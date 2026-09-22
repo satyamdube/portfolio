@@ -498,20 +498,17 @@ body.light-theme .theme-pill-opt.active {
   gap: 1rem;
 }
 
-@media (max-width: 640px) {
-  .nav-container {
-    padding: 0 1.15rem;
-    padding-left: max(1.15rem, var(--sal));
-    padding-right: max(1.15rem, var(--sar));
-  }
-}
-
-@media (max-width: 380px) {
-  .nav-container {
-    padding: 0 0.85rem;
-    padding-left: max(0.85rem, var(--sal));
-    padding-right: max(0.85rem, var(--sar));
-  }
+.nav-container {
+  max-width: var(--max-width);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  padding-left: max(1.5rem, var(--sal));
+  padding-right: max(1.5rem, var(--sar));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 /* Brand Logo */
@@ -520,7 +517,8 @@ body.light-theme .theme-pill-opt.active {
   align-items: center;
   gap: 0.75rem;
   text-decoration: none;
-  flex-shrink: 0;
+  min-width: 0;
+  flex-shrink: 1;
 }
 
 .logo-symbol {
@@ -548,6 +546,7 @@ body.light-theme .theme-pill-opt.active {
 .brand-meta {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .brand-name {
@@ -556,6 +555,7 @@ body.light-theme .theme-pill-opt.active {
   font-size: 1.05rem;
   color: var(--text-heading);
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .brand-role {
@@ -563,27 +563,65 @@ body.light-theme .theme-pill-opt.active {
   color: var(--accent-cyan);
   font-family: var(--font-mono);
   line-height: 1.2;
+  white-space: nowrap;
 }
 
-@media (max-width: 420px) {
+/* Mobile & Tablet Header Optimization */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 1.15rem;
+    padding-left: max(1.15rem, var(--sal));
+    padding-right: max(1.15rem, var(--sar));
+    gap: 0.5rem;
+  }
+
+  /* Hide long role subtitle in top bar on mobile to give full room to hamburger and toggle */
+  .site-header > .nav-container > .brand-logo > .brand-meta > .brand-role {
+    display: none;
+  }
+
+  .mobile-drawer-header .brand-role {
+    display: block;
+    font-size: 0.72rem;
+  }
+
+  .brand-logo {
+    gap: 0.55rem;
+  }
+
+  .brand-name {
+    font-size: 0.98rem;
+  }
+
   .logo-symbol {
     width: 36px;
     height: 36px;
   }
+
   .logo-text {
-    font-size: 1rem;
-  }
-  .brand-name {
     font-size: 0.95rem;
-  }
-  .brand-role {
-    font-size: 0.7rem;
   }
 }
 
-@media (max-width: 350px) {
-  .brand-role {
-    display: none;
+@media (max-width: 380px) {
+  .nav-container {
+    padding: 0 0.85rem;
+    padding-left: max(0.85rem, var(--sal));
+    padding-right: max(0.85rem, var(--sar));
+    gap: 0.35rem;
+  }
+
+  .logo-symbol {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo-text {
+    font-size: 0.88rem;
+  }
+
+  .brand-name {
+    font-size: 0.9rem;
   }
 }
 
@@ -656,6 +694,8 @@ body.light-theme .theme-pill-opt.active {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 /* Mobile Toggle Hamburger Button */
@@ -663,14 +703,15 @@ body.light-theme .theme-pill-opt.active {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 32px;
-  height: 24px;
+  width: 28px;
+  height: 20px;
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 3px 2px;
+  padding: 1px 0;
   z-index: 110;
   position: relative;
+  flex-shrink: 0;
 }
 
 .mobile-toggle span {
@@ -706,6 +747,10 @@ body.light-theme .theme-pill-opt.active {
 
   .mobile-toggle {
     display: flex;
+  }
+
+  .nav-actions {
+    gap: 0.6rem;
   }
 
   .nav-links {
@@ -807,6 +852,48 @@ body.light-theme .theme-pill-opt.active {
   .mobile-drawer-actions .btn {
     width: 100%;
     padding: 0.75rem 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-actions {
+    gap: 0.5rem;
+  }
+
+  .theme-toggle-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .theme-toggle-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .mobile-toggle {
+    width: 28px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav-actions {
+    gap: 0.35rem;
+  }
+
+  .theme-toggle-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .theme-toggle-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .mobile-toggle {
+    width: 26px;
+    height: 18px;
   }
 }
 
