@@ -111,18 +111,10 @@ export default function Navbar({ onOpenResume, onOpenChat }) {
                   <span className="brand-role">Portfolio</span>
                 </div>
               </div>
-              <button
-                className="mobile-drawer-close"
-                id="drawer-close-btn"
-                onClick={closeDrawer}
-                aria-label="Close navigation menu"
-              >
-                ×
-              </button>
             </div>
 
             {/* Navigation List */}
-            <ul className="nav-links-list">
+            <ul className="nav-links-list margin-left">
               {[
                 { href: '#home', label: 'Home', id: 'home' },
                 { href: '#about', label: 'About', id: 'about' },
