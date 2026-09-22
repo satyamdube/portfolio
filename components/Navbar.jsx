@@ -95,7 +95,7 @@ export default function Navbar({ onOpenResume, onOpenChat }) {
             </div>
             <div className="brand-meta">
               <span className="brand-name">Satyam Dubey</span>
-              <span className="brand-role">Sr. Frontend / Full Stack Developer</span>
+              <span className="brand-role">Full Stack Developer</span>
             </div>
           </a>
 
