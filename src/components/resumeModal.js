@@ -83,8 +83,16 @@ export function initResumeModal() {
   }
 
   const heroResumeBtn = document.getElementById("hero-resume-btn");
-  resumeBtn?.addEventListener("click", openModal);
-  heroResumeBtn?.addEventListener("click", openModal);
+  const mobileResumeBtn = document.getElementById("mobile-resume-btn");
+
+  function handleOpenResume() {
+    if (window.__closeNavDrawer) window.__closeNavDrawer();
+    openModal();
+  }
+
+  resumeBtn?.addEventListener("click", handleOpenResume);
+  heroResumeBtn?.addEventListener("click", handleOpenResume);
+  mobileResumeBtn?.addEventListener("click", handleOpenResume);
   closeBtn?.addEventListener("click", closeModal);
   modal.addEventListener("click", e => {
     if (e.target === modal) closeModal();

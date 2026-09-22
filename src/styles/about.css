@@ -4,7 +4,7 @@
    ========================================================================== */
 
 .about-section {
-  padding: 6rem 0;
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
   border-top: 1px solid var(--border-subtle);
   background: rgba(13, 17, 26, 0.4);
 }
@@ -12,7 +12,7 @@
 .about-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
-  gap: 4rem;
+  gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .about-title {
-  font-size: 2.25rem;
+  font-size: clamp(1.8rem, 4.5vw, 2.25rem);
   font-weight: 700;
   color: var(--text-heading);
   letter-spacing: -0.02em;
@@ -31,7 +31,7 @@
 }
 
 .about-text p {
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
   color: var(--text-secondary);
   line-height: 1.75;
 }
@@ -44,14 +44,14 @@
 .about-stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
+  gap: clamp(0.85rem, 2vw, 1.25rem);
 }
 
 .about-stat-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 1.75rem 1.5rem;
+  padding: clamp(1.2rem, 3vw, 1.75rem);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: var(--shadow-card);
@@ -69,33 +69,33 @@
 
 .stat-val {
   font-family: var(--font-display);
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.1;
   color: var(--accent-cyan);
   margin-bottom: 0.4rem;
 }
 
 .stat-label {
-  font-size: 1.05rem;
+  font-size: clamp(0.92rem, 2vw, 1.05rem);
   font-weight: 600;
   color: var(--text-heading);
   margin-bottom: 0.2rem;
 }
 
 .stat-sub {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
 }
 
 @media (max-width: 992px) {
   .about-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
   .about-stats-grid {
     grid-template-columns: 1fr;
   }

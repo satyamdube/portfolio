@@ -1,17 +1,17 @@
 export const resumeData = {
   personal: {
     name: "Satyam Dubey",
-    title: "Software Engineer | Senior Frontend & Fullstack Developer",
+    title: "Sr. Frontend Developer / Full Stack Developer",
     experience: "7+ Years Experience",
     location: "Noida, India",
     phone: "+91 8586864294",
     email: "satyamdubey9450@gmail.com",
     linkedin: "https://linkedin.com/in/satyam8586864294",
     githubPortfolio: "https://satyamdube.github.io/portfolio",
-    tagline: "Software Engineer with 7+ years of experience building scalable, high-performance web applications and seamlessly integrating complex APIs.",
-    availability: "Available for Senior Frontend & Fullstack Software Engineer roles"
+    tagline: "Sr. Frontend Developer / Full Stack Developer with 7+ years of experience building scalable, high-performance web applications and seamlessly integrating complex APIs.",
+    availability: "Available for Sr. Frontend Developer & Full Stack Developer roles"
   },
-  summary: "Senior Frontend Developer with 7+ years of experience building scalable, high-performance web applications. Strong expertise across the full stack — React.js, Next.js, TypeScript, Node.js, Express.js/NestJS — with solid understanding of system design, cloud/DevOps practices, and databases (MySQL, MongoDB, Redis). Proven track record of improving application performance by 30–40% and delivering production systems for enterprise and high-traffic platforms.",
+  summary: "Sr. Frontend Developer / Full Stack Developer with 7+ years of experience building scalable, high-performance web applications. Strong expertise across the full stack — React.js, Next.js, TypeScript, Node.js, Express.js/NestJS — with solid understanding of system design, cloud/DevOps practices, and databases (MySQL, MongoDB, Redis). Proven track record of improving application performance by 30–40% and delivering production systems for enterprise and high-traffic platforms.",
   metrics: [
     { label: "React / Next.js", value: "7+", detail: "Frontend Mastery" },
     { label: "Full-Stack", value: "Node & Express", detail: "REST & GraphQL APIs" },

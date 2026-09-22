@@ -50,7 +50,7 @@ export function initContactHandler() {
   // Copy specs on hero terminal
   if (copySummaryBtn) {
     copySummaryBtn.addEventListener("click", () => {
-      const summaryText = `Satyam Dubey | Senior Frontend & Fullstack Developer\nExperience: 7+ Years\nLocation: Noida, India\nPhone: +91 8586864294 | Email: satyamdubey9450@gmail.com\nCore Stack: React.js, Next.js, Node.js, Express/NestJS, TypeScript, GraphQL, Redis, Microservices\nKey Platforms: Axis Edge (traveledge.axis.bank.in), BCG PNB Udaan (udaan.pnb.bank.in), RedDoorz (reddoorz.com)`;
+      const summaryText = `Satyam Dubey | Sr. Frontend Developer / Full Stack Developer\nExperience: 7+ Years\nLocation: Noida, India\nPhone: +91 8586864294 | Email: satyamdubey9450@gmail.com\nCore Stack: React.js, Next.js, Node.js, Express/NestJS, TypeScript, GraphQL, Redis, Microservices\nKey Platforms: Axis Edge (traveledge.axis.bank.in), BCG PNB Udaan (udaan.pnb.bank.in), RedDoorz (reddoorz.com)`;
       navigator.clipboard.writeText(summaryText).then(() => {
         const span = copySummaryBtn.querySelector("span");
         if (span) {

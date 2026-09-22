@@ -117,6 +117,8 @@ function initNavigation() {
   const navLinks = document.querySelectorAll(".nav-link");
   const mobileBtn = document.getElementById("mobile-menu-btn");
   const navLinksContainer = document.getElementById("nav-links");
+  const backdrop = document.getElementById("nav-backdrop");
+  const drawerCloseBtn = document.getElementById("mobile-drawer-close");
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 40) {
@@ -140,13 +142,46 @@ function initNavigation() {
     });
   });
 
-  mobileBtn?.addEventListener("click", () => {
-    navLinksContainer?.classList.toggle("open");
-  });
+  function openDrawer() {
+    navLinksContainer?.classList.add("open");
+    mobileBtn?.classList.add("open");
+    mobileBtn?.setAttribute("aria-expanded", "true");
+    backdrop?.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeDrawer() {
+    navLinksContainer?.classList.remove("open");
+    mobileBtn?.classList.remove("open");
+    mobileBtn?.setAttribute("aria-expanded", "false");
+    backdrop?.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  function toggleDrawer() {
+    if (navLinksContainer?.classList.contains("open")) {
+      closeDrawer();
+    } else {
+      openDrawer();
+    }
+  }
+
+  mobileBtn?.addEventListener("click", toggleDrawer);
+  drawerCloseBtn?.addEventListener("click", closeDrawer);
+  backdrop?.addEventListener("click", closeDrawer);
 
   navLinks.forEach(link => {
     link.addEventListener("click", () => {
-      navLinksContainer?.classList.remove("open");
+      closeDrawer();
     });
   });
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && navLinksContainer?.classList.contains("open")) {
+      closeDrawer();
+    }
+  });
+
+  // Export closeDrawer globally so modal triggers inside drawer can dismiss drawer
+  window.__closeNavDrawer = closeDrawer;
 }

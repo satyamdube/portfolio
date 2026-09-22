@@ -15,6 +15,7 @@ export function initChatWidget() {
   const suggestionChips = document.getElementById("suggestion-chips");
   const navTrigger = document.getElementById("nav-chat-trigger");
   const heroTrigger = document.getElementById("hero-ai-btn");
+  const mobileChatTrigger = document.getElementById("mobile-chat-trigger");
 
   // RAG Inspector Elements
   const inspectorToggle = document.getElementById("rag-inspector-toggle");
@@ -44,6 +45,7 @@ export function initChatWidget() {
 
   // Open / Close Window
   function openChat(initialQuery = null) {
+    if (window.__closeNavDrawer) window.__closeNavDrawer();
     if (!chatWindow) return;
     chatWindow.classList.remove("hidden");
     input?.focus();
@@ -67,6 +69,7 @@ export function initChatWidget() {
   closeBtn?.addEventListener("click", closeChat);
   navTrigger?.addEventListener("click", () => openChat());
   heroTrigger?.addEventListener("click", () => openChat());
+  mobileChatTrigger?.addEventListener("click", () => openChat());
 
   // RAG Inspector toggle
   inspectorToggle?.addEventListener("click", () => {
