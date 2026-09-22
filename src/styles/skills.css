@@ -1,0 +1,94 @@
+/* ==========================================================================
+   TECHNICAL SKILLS SECTION - REFINED SKILL PROFILE
+   Modeled after syedfaizanjamal.vercel.app
+   ========================================================================== */
+
+.skills-section {
+  padding: 6rem 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.skills-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.75rem;
+}
+
+.skill-category-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-smooth);
+}
+
+.skill-category-box:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 245, 160, 0.35);
+  box-shadow: 0 15px 35px -10px rgba(0, 245, 160, 0.12);
+}
+
+.skill-category-title {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  margin-bottom: 1.25rem;
+}
+
+.skill-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: auto;
+}
+
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+.skill-pill:hover {
+  transform: translateY(-2px) scale(1.03);
+  border-color: rgba(0, 245, 160, 0.45);
+  box-shadow: 0 4px 15px -3px rgba(0, 245, 160, 0.25);
+  color: #ffffff;
+  background: rgba(0, 245, 160, 0.06);
+}
+
+.skill-avatar-letter {
+  display: flex;
+  height: 22px;
+  width: 22px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: rgba(0, 245, 160, 0.12);
+  border: 1px solid rgba(0, 245, 160, 0.25);
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .skills-categories-grid {
+    grid-template-columns: 1fr;
+  }
+}
