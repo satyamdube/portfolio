@@ -1,0 +1,14 @@
+/* ==========================================================================
+   SATYAM DUBEY PORTFOLIO - NEXT.JS GLOBAL STYLES
+   Imports all modular stylesheets
+   ========================================================================== */
+
+@import "../src/styles/main.css";
+@import "../src/styles/hero.css";
+@import "../src/styles/about.css";
+@import "../src/styles/skills.css";
+@import "../src/styles/projects.css";
+@import "../src/styles/timeline.css";
+@import "../src/styles/performance.css";
+@import "../src/styles/chatbot.css";
+@import "../src/styles/contact.css";
