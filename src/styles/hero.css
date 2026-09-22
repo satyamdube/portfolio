@@ -67,8 +67,8 @@
   background: rgba(0, 245, 160, 0.08);
   border: 1px solid rgba(0, 245, 160, 0.25);
   font-size: 0.82rem;
-  font-weight: 500;
-  color: #a7f3d0;
+  font-weight: 600;
+  color: var(--accent-cyan);
   max-width: 100%;
 }
 
@@ -100,8 +100,8 @@
 
 .hero-subheading {
   font-size: clamp(1.2rem, 3.2vw, 1.75rem);
-  font-weight: 600;
-  color: #e2e8f0;
+  font-weight: 700;
+  color: var(--text-heading);
   line-height: 1.35;
   margin-bottom: 1rem;
 }
@@ -321,3 +321,52 @@
     height: 38px;
   }
 }
+
+/* Light Theme Overrides for Hero */
+[data-theme="light"] .hero-title .text-accent,
+body.light-theme .hero-title .text-accent {
+  background: linear-gradient(135deg, #059669 0%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .availability-pill,
+body.light-theme .availability-pill {
+  background: rgba(5, 150, 105, 0.08);
+  border-color: rgba(5, 150, 105, 0.3);
+  color: #047857;
+}
+
+[data-theme="light"] .hero-avatar,
+body.light-theme .hero-avatar {
+  background: #ffffff;
+  border-color: rgba(5, 150, 105, 0.6);
+  box-shadow: 0 0 20px rgba(5, 150, 105, 0.3);
+}
+
+[data-theme="light"] .social-link,
+body.light-theme .social-link {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.1);
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .social-link:hover,
+body.light-theme .social-link:hover {
+  background: rgba(5, 150, 105, 0.08);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+[data-theme="light"] .code-card-surface,
+body.light-theme .code-card-surface {
+  background: #0f172a;
+  border-color: rgba(15, 23, 42, 0.15);
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.25);
+}
+
+[data-theme="light"] .card-topbar,
+body.light-theme .card-topbar {
+  background: #080d1a;
+}
+

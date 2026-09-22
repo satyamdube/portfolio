@@ -25,6 +25,7 @@ lerna-debug.log*
 # Production / Bundles
 dist
 dist-ssr
+scratch/
 *.local
 
 # Editor directories and files

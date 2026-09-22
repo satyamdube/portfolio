@@ -65,6 +65,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
+      data-theme="dark"
       className={`dark-theme ${outfit.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}
     >
       <body className="dark-theme">

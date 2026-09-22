@@ -6,7 +6,7 @@
 .about-section {
   padding: clamp(3.5rem, 7vw, 6rem) 0;
   border-top: 1px solid var(--border-subtle);
-  background: rgba(13, 17, 26, 0.4);
+  background: var(--bg-secondary);
 }
 
 .about-grid {

@@ -59,7 +59,7 @@
   background: rgba(255, 255, 255, 0.03);
   padding: 0.35rem 0.7rem;
   font-size: clamp(0.78rem, 1.8vw, 0.85rem);
-  color: #cbd5e1;
+  color: var(--text-primary);
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
   max-width: 100%;
 }
@@ -68,7 +68,7 @@
   transform: translateY(-2px) scale(1.03);
   border-color: rgba(0, 245, 160, 0.45);
   box-shadow: 0 4px 15px -3px rgba(0, 245, 160, 0.25);
-  color: #ffffff;
+  color: var(--text-heading);
   background: rgba(0, 245, 160, 0.06);
 }
 
@@ -105,3 +105,25 @@
     padding: 0.3rem 0.55rem;
   }
 }
+
+[data-theme="light"] .skill-pill,
+body.light-theme .skill-pill {
+  background: rgba(15, 23, 42, 0.04);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .skill-pill:hover,
+body.light-theme .skill-pill:hover {
+  background: rgba(5, 150, 105, 0.08);
+  border-color: var(--accent-cyan);
+  color: var(--text-heading);
+}
+
+[data-theme="light"] .skill-avatar-letter,
+body.light-theme .skill-avatar-letter {
+  background: rgba(5, 150, 105, 0.12);
+  border-color: rgba(5, 150, 105, 0.3);
+  color: #047857;
+}
+
+

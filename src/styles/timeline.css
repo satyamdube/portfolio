@@ -36,7 +36,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #07090e;
+  background: var(--bg-main);
   border: 3px solid var(--accent-cyan);
   box-shadow: 0 0 12px var(--accent-cyan);
   display: flex;
@@ -97,7 +97,7 @@
   border-radius: var(--radius-full);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-subtle);
-  color: #cbd5e1;
+  color: var(--text-secondary);
   white-space: nowrap;
 }
 

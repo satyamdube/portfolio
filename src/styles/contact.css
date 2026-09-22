@@ -114,14 +114,14 @@
   font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 600;
-  color: #cbd5e1;
+  color: var(--text-secondary);
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
   padding: 0.8rem 1rem;
-  background: rgba(7, 9, 14, 0.7);
+  background: var(--bg-input);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   color: var(--text-heading);
@@ -269,3 +269,29 @@
     text-align: center;
   }
 }
+
+/* Light Theme Overrides for Contact Section */
+[data-theme="light"] .form-group input,
+[data-theme="light"] .form-group textarea,
+body.light-theme .form-group input,
+body.light-theme .form-group textarea {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.15);
+  color: #0f172a;
+}
+
+[data-theme="light"] .form-group input:focus,
+[data-theme="light"] .form-group textarea:focus,
+body.light-theme .form-group input:focus,
+body.light-theme .form-group textarea:focus {
+  border-color: #059669;
+  box-shadow: 0 0 10px rgba(5, 150, 105, 0.2);
+}
+
+[data-theme="light"] .contact-icon,
+body.light-theme .contact-icon {
+  background: rgba(5, 150, 105, 0.1);
+  border-color: rgba(5, 150, 105, 0.25);
+  color: #059669;
+}
+

@@ -32,7 +32,7 @@ export default function ParticleCanvas() {
         this.vy = (Math.random() - 0.5) * 0.7;
         this.radius = Math.random() * 1.5 + 1;
         this.baseAlpha = Math.random() * 0.4 + 0.2;
-        this.color = Math.random() > 0.4 ? '0, 245, 160' : '99, 102, 241';
+        this.colorType = Math.random() > 0.4 ? 'cyan' : 'indigo';
       }
 
       update() {
@@ -53,10 +53,13 @@ export default function ParticleCanvas() {
         }
       }
 
-      draw() {
+      draw(isLight) {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${this.color}, ${this.baseAlpha})`;
+        const col = isLight
+          ? (this.colorType === 'cyan' ? '5, 150, 105' : '79, 70, 229')
+          : (this.colorType === 'cyan' ? '0, 245, 160' : '99, 102, 241');
+        ctx.fillStyle = `rgba(${col}, ${isLight ? this.baseAlpha * 0.7 : this.baseAlpha})`;
         ctx.fill();
       }
     }
@@ -69,6 +72,10 @@ export default function ParticleCanvas() {
     function animate() {
       ctx.clearRect(0, 0, width, height);
 
+      const isLight = document.body.classList.contains('light-theme');
+      const strokeCol = isLight ? '79, 70, 229' : '0, 245, 160';
+      const strokeMaxAlpha = isLight ? 0.12 : 0.22;
+
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -76,24 +83,26 @@ export default function ParticleCanvas() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < maxDistance) {
-            const alpha = (1 - dist / maxDistance) * 0.22;
+            const alpha = (1 - dist / maxDistance) * strokeMaxAlpha;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(0, 245, 160, ${alpha})`;
+            ctx.strokeStyle = `rgba(${strokeCol}, ${alpha})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }
         }
       }
 
-      particles.forEach(p => {
+      particles.forEach((p) => {
         p.update();
-        p.draw();
+        p.draw(isLight);
       });
 
       animationFrameId = requestAnimationFrame(animate);
     }
+
+    animate();
 
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
@@ -114,15 +123,13 @@ export default function ParticleCanvas() {
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseleave', handleMouseLeave);
 
-    animate();
-
     return () => {
-      cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
-  return <canvas id="neural-canvas" ref={canvasRef} aria-hidden="true" />;
+  return <canvas ref={canvasRef} id="neural-canvas" aria-hidden="true" />;
 }

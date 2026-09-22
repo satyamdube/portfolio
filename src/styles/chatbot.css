@@ -773,3 +773,119 @@
     font-size: 0.84rem;
   }
 }
+
+/* ==========================================================================
+   CHATBOT LIGHT THEME STYLES
+   ========================================================================== */
+[data-theme="light"] .ai-chat-window,
+body.light-theme .ai-chat-window {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 25px 50px -10px rgba(15, 23, 42, 0.15), 0 0 25px rgba(99, 102, 241, 0.08);
+}
+
+[data-theme="light"] .chat-header,
+body.light-theme .chat-header {
+  background: #f8fafc;
+  border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] .ai-launcher,
+body.light-theme .ai-launcher {
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  border-color: rgba(5, 150, 105, 0.4);
+  color: #0f172a;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15), 0 0 20px rgba(5, 150, 105, 0.2);
+}
+
+[data-theme="light"] .ai-launcher:hover,
+body.light-theme .ai-launcher:hover {
+  background: #ffffff;
+  box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.2), 0 0 30px rgba(5, 150, 105, 0.3);
+}
+
+[data-theme="light"] .icon-btn,
+body.light-theme .icon-btn {
+  background: rgba(15, 23, 42, 0.05);
+  color: #475569;
+}
+
+[data-theme="light"] .icon-btn:hover,
+body.light-theme .icon-btn:hover {
+  background: rgba(15, 23, 42, 0.1);
+  color: #0f172a;
+}
+
+[data-theme="light"] .settings-drawer,
+body.light-theme .settings-drawer {
+  background: #f8fafc;
+  border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] .settings-content select,
+[data-theme="light"] .settings-content input,
+body.light-theme .settings-content select,
+body.light-theme .settings-content input {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+[data-theme="light"] .rag-inspector-drawer,
+body.light-theme .rag-inspector-drawer {
+  background: #f8fafc;
+  border-bottom-color: rgba(5, 150, 105, 0.25);
+  color: #0f172a;
+}
+
+[data-theme="light"] .telemetry-pill,
+body.light-theme .telemetry-pill {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] .telemetry-label,
+body.light-theme .telemetry-label {
+  color: #64748b;
+}
+
+[data-theme="light"] .message-row.assistant .message-bubble,
+body.light-theme .message-row.assistant .message-bubble {
+  background: #f1f5f9;
+  border-color: rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+}
+
+[data-theme="light"] .message-row.user .message-bubble,
+body.light-theme .message-row.user .message-bubble {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.16) 0%, rgba(2, 132, 199, 0.18) 100%);
+  border-color: rgba(5, 150, 105, 0.35);
+  color: #0f172a;
+}
+
+[data-theme="light"] .chat-input-form,
+body.light-theme .chat-input-form {
+  background: #f8fafc;
+  border-top-color: rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] .chat-input-form input,
+body.light-theme .chat-input-form input {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+[data-theme="light"] .chip-btn,
+body.light-theme .chip-btn {
+  background: rgba(15, 23, 42, 0.05);
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #475569;
+}
+
+[data-theme="light"] .chip-btn:hover,
+body.light-theme .chip-btn:hover {
+  background: rgba(5, 150, 105, 0.1);
+  color: var(--accent-cyan);
+}
+
