@@ -37,18 +37,27 @@ export default function ResumeModal({ isOpen, onClose }) {
             <h3 className="modal-title">Satyam Dubey — Resume</h3>
           </div>
           <div className="resume-modal-actions">
-            <button
-              id="print-resume-btn"
-              className="btn btn-outline btn-sm"
-              onClick={() => window.print()}
+            <a
+              id="download-resume-btn"
+              href="/Satyam_Dubey_Resume.pdf"
+              download="Satyam_Dubey_Resume.pdf"
+              className="btn btn-primary btn-sm btn-glow"
+              style={{
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                cursor: 'pointer'
+              }}
+              title="Download Satyam Dubey Resume (PDF)"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14">
-                <polyline points="6 9 6 2 18 2 18 9" />
-                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
-                <rect x="6" y="14" width="12" height="8" />
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              <span>Print / PDF</span>
-            </button>
+              <span>Download Resume</span>
+            </a>
             <button className="modal-close" id="resume-close-btn" onClick={onClose} aria-label="Close modal">
               ×
             </button>
@@ -115,22 +124,25 @@ export default function ResumeModal({ isOpen, onClose }) {
 
             <h2>Core Skills</h2>
             <p>
-              <strong>Frontend:</strong> React.js, Next.js, TypeScript, JavaScript (ES6+), Vue.js, Redux Toolkit / RTK Query, HTML5, CSS3, Tailwind CSS, SCSS, Responsive Design, Performance Optimization, Accessibility, Jest, React Testing Library
+              <strong>Frontend:</strong> HTML5, CSS3, Tailwind CSS, SCSS, JavaScript (ES6+), TypeScript, React.js, Next.js, Redux Toolkit / RTK Query, Responsive Design, Performance Optimization, Accessibility, Testing (Jest, React Testing Library)
             </p>
             <p>
-              <strong>Backend:</strong> Node.js, Express.js, NestJS, REST APIs, GraphQL, Authentication &amp; Authorization (JWT/OAuth), Middleware, WebSockets
+              <strong>Backend:</strong> Node.js, Express.js / NestJS, REST API, Authentication &amp; Authorization, JWT / OAuth, Middleware, Error Handling, WebSockets
             </p>
             <p>
-              <strong>System Architecture:</strong> Microservices &amp; Distributed Systems, Next.js App Router &amp; Server-Side Streaming (SSR), Component Design Systems, Load Balancing, Rate Limiting, API Gateways
+              <strong>Databases:</strong> MySQL, MongoDB, SQL Joins, Indexing, Transactions, Query Optimization, Database Design, Redis / Caching
             </p>
             <p>
-              <strong>Databases:</strong> MySQL, MongoDB, Redis (Caching &amp; Rate Limiting), SQL Indexing, Query Optimization
+              <strong>System Design:</strong> API Architecture, Microservices Basics, Load Balancing, Message Queues, Scalability, Database Scaling, Security, Rate Limiting
             </p>
             <p>
-              <strong>System Design &amp; DevOps:</strong> API Architecture, Microservices Basics, Load Balancing, Docker, Git/GitHub CI/CD, Azure/AWS Basics, Nginx, Linux
+              <strong>DevOps &amp; Tools:</strong> Docker, Git / GitHub, CI/CD, Azure / AWS, Linux Basics, Nginx, Environment &amp; Config Management, Monitoring &amp; Logging, Cross-browser Compatibility, CMS, PDF Handling, Webpack, NPM
             </p>
             <p>
-              <strong>E-Commerce Fundamentals:</strong> Core Web Vitals (30-40% boost), SEO, Conversion Optimization, GA4/GTM Analytics
+              <strong>Shopify Development:</strong> Shopify Liquid (Themes, Sections, Snippets, Metafields, JSON Templates, Online Store 2.0), Shopify Admin &amp; Storefront GraphQL API, Hydrogen + Remix/React Router (Headless Commerce, Custom Storefronts), Shopify App Development (Shopify CLI, App Bridge, Polaris, Webhooks, OAuth), Shopify Functions (Custom Discounts, Shipping/Payment &amp; Checkout Logic), Checkout Extensions, Shopify Plus (Enterprise, B2B, Advanced Checkout, Automation)
+            </p>
+            <p>
+              <strong>E-commerce Fundamentals:</strong> SEO, Core Web Vitals, Conversion Optimization, GA4 / GTM Analytics, Payment &amp; Third-Party Integrations
             </p>
 
             <h2>Professional Experience</h2>

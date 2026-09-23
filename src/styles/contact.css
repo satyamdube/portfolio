@@ -172,6 +172,17 @@
   flex-shrink: 0;
 }
 
+@media (max-width: 540px) {
+  .resume-card .modal-header {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .resume-card .resume-modal-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
 .resume-preview-body {
   background: #ffffff;
   color: #1e293b;
