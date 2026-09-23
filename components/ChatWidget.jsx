@@ -12,8 +12,9 @@ function formatMarkdown(text) {
     .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>')
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/`([^`]+)`/g, '<code>$1</code>')
-    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
-    .replace(/^\s*[-*]\s+(.*$)/gim, '<li>$1</li>');
+    .replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:|tel:)[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+    .replace(/^\s*[-*]\s+(.*$)/gim, '<li>$1</li>')
+    .replace(/^\s*(\d+\.)\s+(.*$)/gim, '<li><strong>$1</strong> $2</li>');
 
   html = html.replace(/(<li>.*<\/li>)/gim, '<ul>$1</ul>');
   html = html.replace(/<\/ul>\s*<ul>/g, '');
@@ -71,6 +72,13 @@ export default function ChatWidget({ isOpen, onClose, onToggle }) {
       const config = ragPipeline.getConfig();
       setRagStatusText(`RAG Pipeline Ready: Vector DB (${config.provider}) · ${config.documentsCount} Chunks Indexed`);
     });
+
+    if (typeof window !== 'undefined') {
+      const storedProvider = localStorage.getItem('satyam_llm_provider');
+      const storedKey = localStorage.getItem('satyam_llm_api_key');
+      if (storedProvider) setProvider(storedProvider);
+      if (storedKey) setApiKey(storedKey);
+    }
   }, []);
 
   useEffect(() => {
@@ -95,38 +103,45 @@ export default function ChatWidget({ isOpen, onClose, onToggle }) {
     setInputQuery('');
     setIsGenerating(true);
 
-    // Append user message
-    setMessages((prev) => [...prev, { role: 'user', text: q }]);
-
-    // Append streaming assistant placeholder
-    const assistantIndex = messages.length + 1;
-    setMessages((prev) => [...prev, { role: 'assistant', text: '', isStreaming: true }]);
+    // Atomically append user message and streaming assistant placeholder
+    setMessages((prev) => [
+      ...prev,
+      { role: 'user', text: q },
+      { role: 'assistant', text: '', isStreaming: true }
+    ]);
 
     try {
       await ragPipeline.execute(
         q,
         (partialText, trace) => {
-          setCurrentTrace(trace);
+          if (trace) setCurrentTrace(trace);
           setMessages((prev) => {
             const copy = [...prev];
             copy[copy.length - 1] = {
               role: 'assistant',
               text: partialText,
               isStreaming: true,
-              trace
+              trace: trace || copy[copy.length - 1]?.trace
             };
             return copy;
           });
         },
-        (finalResult, trace) => {
-          setCurrentTrace(trace);
+        (finalResult, sources, trace) => {
+          // Resolve finalText whether passed as string or object
+          const resolvedText = typeof finalResult === 'string'
+            ? finalResult
+            : (finalResult?.answer || finalResult?.text || '');
+
+          const resolvedTrace = trace || (sources && !Array.isArray(sources) ? sources : null);
+          if (resolvedTrace) setCurrentTrace(resolvedTrace);
+
           setMessages((prev) => {
             const copy = [...prev];
             copy[copy.length - 1] = {
               role: 'assistant',
-              text: finalResult.answer,
+              text: resolvedText,
               isStreaming: false,
-              trace
+              trace: resolvedTrace || copy[copy.length - 1]?.trace
             };
             return copy;
           });

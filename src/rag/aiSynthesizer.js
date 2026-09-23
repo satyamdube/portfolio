@@ -152,9 +152,11 @@ export class AISynthesizer {
     }
     // 8. General fallback synthesizing top retrieved chunks
     else {
-      const mainChunk = topDoc || allDocs[0];
-      answer = `### Overview: ${mainChunk.title}\n\n` +
-        `${mainChunk.content}\n\n` +
+      const mainChunk = topDoc || allDocs[0] || {};
+      const chunkTitle = mainChunk.title || "Satyam Dubey - Senior Fullstack Developer";
+      const chunkContent = mainChunk.content || "Satyam Dubey is a Senior Frontend & Fullstack Developer with 7+ years of experience in React.js, Next.js, Node.js, and System Architecture.";
+      answer = `### Overview: ${chunkTitle}\n\n` +
+        `${chunkContent}\n\n` +
         `### Key Highlights\n` +
         `- **Core Expertise**: 7+ years in React.js, Next.js, Node.js, Express/NestJS, and System Design.\n` +
         `- **Impact**: Proven 30–40% performance improvement across enterprise banking and travel platforms.\n` +
