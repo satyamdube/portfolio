@@ -147,7 +147,7 @@ export class AISynthesizer {
         `- **Email**: [satyamdubey9450@gmail.com](mailto:satyamdubey9450@gmail.com)\n` +
         `- **Phone / WhatsApp**: [+91 8586864294](tel:+918586864294)\n` +
         `- **LinkedIn**: [linkedin.com/in/satyam8586864294](https://linkedin.com/in/satyam8586864294)\n` +
-        `- **Portfolio**: [satyamdube.github.io/portfolio](https://satyamdube.github.io/portfolio)\n\n` +
+        `- **Portfolio**: [portfolio-satyam-dubey.vercel.app](https://portfolio-satyam-dubey.vercel.app/)\n\n` +
         `You can also download his formatted resume or submit a direct inquiry via the contact form on this page!`;
     }
     // 8. General fallback synthesizing top retrieved chunks

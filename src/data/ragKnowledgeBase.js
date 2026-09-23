@@ -19,19 +19,20 @@ export const ragKnowledgeBase = [
 - Email: satyamdubey9450@gmail.com
 - Phone / WhatsApp: +91 8586864294
 - LinkedIn: https://linkedin.com/in/satyam8586864294
-- Portfolio: https://satyamdube.github.io/portfolio
+- Portfolio: https://portfolio-satyam-dubey.vercel.app/
 He is actively open for Senior Frontend Developer, Lead UI Engineer, Fullstack Architect, and Technical Lead opportunities.`
   },
   {
     id: "exp-neosoft",
     title: "Current Role: Senior Frontend Developer at Neosoft Technologies",
-    tags: ["neosoft", "experience", "current", "react", "nextjs", "performance", "design system"],
+    tags: ["neosoft", "experience", "current", "react", "nextjs", "performance", "design system", "shopify", "headless", "hydrogen"],
     content: `At Neosoft Technologies Pvt. Ltd. (Noida, Feb 2024 – Present), Satyam serves as Senior Frontend Developer:
-- Develops scalable, multi-tenant web applications utilizing React.js and Next.js.
-- Boosted production application performance by over 30% through fine-grained code-splitting, critical CSS inlining, image optimization, and bundle trimming.
-- Engineered reusable component architecture and design systems adopted across feature development teams to accelerate delivery.
-- Integrated high-throughput REST and GraphQL APIs with Node.js / Express.js backends for seamless, error-resilient data flows.
-- Collaborates directly with cross-functional engineering teams, product managers, and QA in an agile environment.`
+- Built responsive, accessible, and highly interactive UIs using React.js and Next.js, improving application performance by 30%+ through Core Web Vitals optimization (SSR, SSG, image optimization, dynamic imports, and caching).
+- Integrated front-end components with internal and third-party services via RESTful APIs and GraphQL, implementing efficient client-side state management with Context API, Redux Toolkit, Zustand, and React Query.
+- Built reusable, highly configurable component libraries using advanced React patterns (compound components, render props, slots) with Storybook, Radix UI, and Tailwind UI.
+- Developed and optimized headless e-commerce storefronts using React, Next.js, and Shopify Hydrogen, connecting securely via the Shopify Storefront API (GraphQL) for cart/checkout, product catalogs, collections, customer accounts, and metafields.
+- Implemented OAuth/OIDC-based identity provider integrations with Shopify, applying modern web security practices (Next-Auth/Auth.js, JWT, CORS).
+- Deployed and managed applications on GCP Cloud Run with CI/CD pipelines, including deployments to Shopify Oxygen; integrated headless CMS platforms (Contentful, Strapi, Sanity), SQL/NoSQL databases, and Prisma ORM within Nx/Turborepo monorepos.`
   },
   {
     id: "exp-wenidi",

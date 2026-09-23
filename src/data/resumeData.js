@@ -7,11 +7,11 @@ export const resumeData = {
     phone: "+91 8586864294",
     email: "satyamdubey9450@gmail.com",
     linkedin: "https://linkedin.com/in/satyam8586864294",
-    githubPortfolio: "https://satyamdube.github.io/portfolio",
+    githubPortfolio: "https://portfolio-satyam-dubey.vercel.app/",
     tagline: "Sr. Frontend Developer / Full Stack Developer with 7+ years of experience building scalable, high-performance web applications and seamlessly integrating complex APIs.",
     availability: "Available for Sr. Frontend Developer & Full Stack Developer roles"
   },
-  summary: "Sr. Frontend Developer / Full Stack Developer with 7+ years of experience building scalable, high-performance web applications. Strong expertise across the full stack — React.js, Next.js, TypeScript, Node.js, Express.js/NestJS — with solid understanding of system design, cloud/DevOps practices, and databases (MySQL, MongoDB, Redis). Proven track record of improving application performance by 30–40% and delivering production systems for enterprise and high-traffic platforms.",
+  summary: "Senior Frontend Developer with 7+ years of experience building scalable, high-performance web applications. Strong expertise across the full stack — React.js, Next.js, TypeScript, Node.js, Express.js/NestJS — with solid understanding of system design, cloud/DevOps practices, and databases (MySQL, MongoDB, Redis). Proven track record of improving application performance by 30–40% and delivering production systems for enterprise and high-traffic platforms.",
   metrics: [
     { label: "React / Next.js", value: "7+", detail: "Frontend Mastery" },
     { label: "Full-Stack", value: "Node & Express", detail: "REST & GraphQL APIs" },
@@ -76,13 +76,16 @@ export const resumeData = {
       period: "Feb 2024 – Present",
       type: "Full-time · Noida, India",
       highlights: [
-        "Developed scalable web applications using React.js and Next.js supporting multiple user roles and complex workflows.",
-        "Improved application performance by 30%+ through component memoization, lazy loading, and critical asset preloading.",
-        "Built reusable component architecture and standardized UI design systems for faster team development cycles.",
-        "Integrated high-throughput REST and GraphQL APIs with Node.js / Express.js backends for seamless data flow.",
-        "Collaborated with cross-functional teams and enforced automated code testing and CI/CD best practices."
+        "Built responsive, accessible, and highly interactive UIs using React.js and Next.js, improving application performance by 30%+ through Core Web Vitals optimization (SSR, SSG, image optimization, dynamic imports, and caching).",
+        "Integrated front-end components with internal and third-party services via RESTful APIs and GraphQL, implementing efficient client-side state management with Context API, Redux Toolkit, Zustand, and React Query.",
+        "Built a reusable, highly configurable component library using advanced React patterns (compound components, render props, slots) with Storybook, Radix UI, and Tailwind UI to ensure UI consistency across brands.",
+        "Developed and optimized headless e-commerce storefronts using React, Next.js, and Shopify Hydrogen, connecting securely to Shopify commerce data via the Storefront API (GraphQL) to handle cart/checkout workflows, product catalogs, collections, customer accounts, and metafields.",
+        "Implemented OAuth/OIDC-based identity provider integrations, including with Shopify, and applied modern web security practices (Next-Auth/Auth.js, JWT, CORS).",
+        "Wrote modular, reusable, and well-documented code with unit and integration tests (Jest, React Testing Library, Cypress).",
+        "Deployed and managed applications on GCP Cloud Run with CI/CD pipelines, including deployments to Shopify Oxygen; integrated headless CMS platforms (Contentful, Strapi, Sanity), SQL/NoSQL databases, and Prisma ORM within Nx/Turborepo monorepos.",
+        "Partnered with UI/UX designers, backend engineers, and product managers to translate Figma wireframes and technical requirements into functional code."
       ],
-      technologies: ["React.js", "Next.js", "TypeScript", "Node.js", "Express.js", "Redux Toolkit", "RTK Query", "Tailwind CSS"]
+      technologies: ["React.js", "Next.js", "TypeScript", "Node.js", "Express.js", "Shopify Hydrogen", "Redux Toolkit", "Zustand", "Tailwind CSS", "Storybook", "GraphQL", "GCP Cloud Run"]
     },
     {
       company: "Wenidi Technology Pvt. Ltd.",
@@ -201,7 +204,7 @@ export const resumeData = {
       title: "SBI Card Platform",
       category: "banking",
       categoryLabel: "Enterprise & Banking",
-      url: "https://satyamdube.github.io/portfolio#projects",
+      url: "https://portfolio-satyam-dubey.vercel.app/#projects",
       role: "Senior Frontend Developer",
       metrics: "Enterprise Security · 40% UI Latency Reduction",
       summary: "Enterprise web application for credit card services, statements, rewards, and self-service account management.",

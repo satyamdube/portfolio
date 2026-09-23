@@ -113,7 +113,7 @@ export default function ResumeModal({ isOpen, onClose }) {
                   </a>{' '}
                   | Portfolio:{' '}
                   <a href={resumeData.personal.githubPortfolio} target="_blank" rel="noopener noreferrer">
-                    satyamdube.github.io/portfolio
+                    portfolio-satyam-dubey.vercel.app
                   </a>
                 </div>
               </div>

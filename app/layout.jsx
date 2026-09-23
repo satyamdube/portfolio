@@ -46,7 +46,7 @@ export const metadata = {
     title: 'Satyam Dubey | Sr. Frontend Developer / Full Stack Developer',
     description:
       'Portfolio of Satyam Dubey — Sr. Frontend Developer / Full Stack Developer with 7+ years of experience building scalable, high-performance web applications.',
-    url: 'https://satyamdube.github.io/portfolio',
+    url: 'https://portfolio-satyam-dubey.vercel.app/',
     siteName: 'Satyam Dubey Portfolio',
   },
   icons: {
