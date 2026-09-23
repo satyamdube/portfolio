@@ -24,12 +24,20 @@ const STOP_WORDS = new Set([
 
 export class VectorDatabase {
   constructor() {
-    // Read configuration from Vite import.meta.env or Node process.env
-    const env = typeof import.meta !== "undefined" && import.meta.env ? import.meta.env : (typeof process !== "undefined" ? process.env : {});
+    // Read configuration from Next.js process.env or Vite import.meta.env
+    const env = typeof process !== "undefined" && process.env ? process.env : (typeof import.meta !== "undefined" && import.meta.env ? import.meta.env : {});
+    const isBrowser = typeof window !== "undefined" && typeof localStorage !== "undefined";
 
-    this.provider = env.VITE_VECTOR_DB_PROVIDER || "inmemory";
-    this.dbUrl = env.VITE_VECTOR_DB_URL || "";
-    this.apiKey = env.VITE_VECTOR_DB_API_KEY || "";
+    const storedProvider = isBrowser ? localStorage.getItem("satyam_vector_provider") : null;
+    const storedUrl = isBrowser ? localStorage.getItem("satyam_vector_url") : null;
+    const storedKey = isBrowser ? localStorage.getItem("satyam_vector_key") : null;
+
+    const defaultUrl = env.UPSTASH_VECTOR_REST_URL || env.NEXT_PUBLIC_UPSTASH_VECTOR_REST_URL || env.VITE_VECTOR_DB_URL || "";
+    const defaultKey = env.UPSTASH_VECTOR_REST_TOKEN || env.NEXT_PUBLIC_UPSTASH_VECTOR_REST_TOKEN || env.VITE_VECTOR_DB_API_KEY || "";
+
+    this.provider = storedProvider || (defaultUrl.includes("upstash.io") ? "upstash" : (env.VITE_VECTOR_DB_PROVIDER || "inmemory"));
+    this.dbUrl = storedUrl || defaultUrl;
+    this.apiKey = storedKey || defaultKey;
     this.collection = env.VITE_VECTOR_DB_COLLECTION || "satyam_portfolio_embeddings";
     this.defaultTopK = parseInt(env.VITE_VECTOR_DB_TOP_K, 10) || 3;
 
@@ -41,15 +49,27 @@ export class VectorDatabase {
     this.isIndexed = false;
   }
 
+  setVectorCredentials(provider, url, key) {
+    this.provider = provider;
+    this.dbUrl = url;
+    this.apiKey = key;
+    if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
+      localStorage.setItem("satyam_vector_provider", provider);
+      localStorage.setItem("satyam_vector_url", url);
+      localStorage.setItem("satyam_vector_key", key);
+    }
+  }
+
   /**
    * Returns current Vector DB configuration details for UI and telemetry
    */
   getConfig() {
+    const isUpstash = Boolean(this.dbUrl && this.dbUrl.includes("upstash.io"));
     return {
-      provider: this.provider,
+      provider: isUpstash ? "Upstash Cloud Vector DB" : (this.provider === "inmemory" ? "In-Memory Vector Engine" : this.provider),
       dbUrl: this.dbUrl ? `${this.dbUrl.slice(0, 24)}...` : "in-memory (browser)",
       collection: this.collection,
-      isRemote: this.provider !== "inmemory" && Boolean(this.dbUrl),
+      isRemote: isUpstash || (this.provider !== "inmemory" && Boolean(this.dbUrl)),
       documentsCount: this.documents.length,
       isIndexed: this.isIndexed
     };
@@ -167,8 +187,41 @@ export class VectorDatabase {
   async search(queryString, topK = null) {
     const k = topK || this.defaultTopK;
 
-    // Optional Remote Vector DB API call
-    if (this.provider !== "inmemory" && this.dbUrl && this.apiKey) {
+    // 1. Try Next.js Serverless Vector Search API route (Upstash Cloud Vector DB)
+    if (typeof window !== "undefined") {
+      try {
+        const apiRes = await fetch("/api/vector-search", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query: queryString, topK: k })
+        });
+        if (apiRes.ok) {
+          const data = await apiRes.json();
+          if (data.success && data.results && data.results.length > 0) {
+            console.log(`[VectorDB] Retrieved ${data.results.length} chunks from Upstash Cloud Vector DB via /api/vector-search (${data.latencyMs}ms)`);
+            return data.results;
+          }
+        }
+      } catch (err) {
+        // Silent fallback to direct or local vector engine
+      }
+    }
+
+    // 2. Direct Upstash Cloud Vector DB query if URL & Token present
+    if (this.dbUrl && this.apiKey && this.dbUrl.includes("upstash.io")) {
+      try {
+        const upstashResults = await this.queryUpstashVectorDb(queryString, k);
+        if (upstashResults && upstashResults.length > 0) {
+          console.log(`[VectorDB] Retrieved ${upstashResults.length} chunks directly from Upstash Cloud Vector DB`);
+          return upstashResults;
+        }
+      } catch (err) {
+        console.warn("[VectorDB] Direct Upstash query failed, falling back to local vector engine:", err.message);
+      }
+    }
+
+    // 3. Optional Remote Generic Vector DB API call
+    if (this.provider !== "inmemory" && this.dbUrl && this.apiKey && !this.dbUrl.includes("upstash.io")) {
       try {
         const remoteResults = await this.queryRemoteVectorDb(queryString, k);
         if (remoteResults && remoteResults.length > 0) {
@@ -179,7 +232,7 @@ export class VectorDatabase {
       }
     }
 
-    // Local In-Memory Cosine Similarity Vector Search
+    // 4. High-Fidelity Local In-Memory Cosine Similarity Vector Search
     return this.searchLocal(queryString, k);
   }
 
@@ -273,5 +326,50 @@ export class VectorDatabase {
       percentage: ((m.score || 0.85) * 100).toFixed(1) + "%",
       source: `remote:${this.provider}`
     }));
+  }
+
+  /**
+   * Direct Upstash Cloud Vector Database Query
+   */
+  async queryUpstashVectorDb(queryString, topK = 3) {
+    const cleanUrl = this.dbUrl.replace(/\/+$/, '');
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3000);
+
+    const res = await fetch(`${cleanUrl}/query-data`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${this.apiKey}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        data: queryString,
+        topK,
+        includeMetadata: true,
+        includeData: true
+      }),
+      signal: controller.signal
+    });
+
+    clearTimeout(timeout);
+    if (!res.ok) throw new Error(`Upstash HTTP ${res.status}`);
+
+    const data = await res.json();
+    const matches = Array.isArray(data.result) ? data.result : [];
+
+    return matches.map(item => {
+      const score = typeof item.score === "number" ? Math.min(0.99, item.score) : 0.85;
+      return {
+        chunk: {
+          id: item.id,
+          title: item.metadata?.title || item.id,
+          content: item.data || item.metadata?.content || "",
+          tags: Array.isArray(item.metadata?.tags) ? item.metadata.tags : []
+        },
+        similarity: score,
+        percentage: (score * 100).toFixed(1) + "%",
+        source: "upstash_cloud_vector_db"
+      };
+    });
   }
 }

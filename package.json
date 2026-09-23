@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "seed:vector": "node scripts/seed-upstash-vector.mjs"
   },
   "dependencies": {
     "next": "^16.3.5",

@@ -61,7 +61,9 @@ export default function ChatWidget({ isOpen, onClose, onToggle }) {
   const [isInspectorOpen, setIsInspectorOpen] = useState(false);
   const [provider, setProvider] = useState('builtin');
   const [apiKey, setApiKey] = useState('');
-  const [ragStatusText, setRagStatusText] = useState('Initializing in-browser Vector Engine...');
+  const [upstashUrl, setUpstashUrl] = useState('');
+  const [upstashToken, setUpstashToken] = useState('');
+  const [ragStatusText, setRagStatusText] = useState('Initializing Vector Engine...');
   const [currentTrace, setCurrentTrace] = useState(null);
 
   const messagesEndRef = useRef(null);
@@ -76,8 +78,13 @@ export default function ChatWidget({ isOpen, onClose, onToggle }) {
     if (typeof window !== 'undefined') {
       const storedProvider = localStorage.getItem('satyam_llm_provider');
       const storedKey = localStorage.getItem('satyam_llm_api_key');
+      const storedVectorUrl = localStorage.getItem('satyam_vector_url');
+      const storedVectorToken = localStorage.getItem('satyam_vector_key');
+
       if (storedProvider) setProvider(storedProvider);
       if (storedKey) setApiKey(storedKey);
+      if (storedVectorUrl) setUpstashUrl(storedVectorUrl);
+      if (storedVectorToken) setUpstashToken(storedVectorToken);
     }
   }, []);
 
@@ -93,6 +100,11 @@ export default function ChatWidget({ isOpen, onClose, onToggle }) {
 
   const handleSaveSettings = () => {
     ragPipeline.synthesizer.setCredentials(provider, apiKey.trim());
+    if (upstashUrl.trim() && upstashToken.trim()) {
+      ragPipeline.vectorDb.setVectorCredentials('upstash', upstashUrl.trim(), upstashToken.trim());
+    }
+    const config = ragPipeline.getConfig();
+    setRagStatusText(`RAG Pipeline Ready: Vector DB (${config.provider}) · ${config.documentsCount} Chunks Indexed`);
     setIsSettingsOpen(false);
   };
 
@@ -246,7 +258,7 @@ export default function ChatWidget({ isOpen, onClose, onToggle }) {
               </div>
               {provider !== 'builtin' && (
                 <div className="form-group" id="api-key-group">
-                  <label htmlFor="api-key-input">API Key</label>
+                  <label htmlFor="api-key-input">LLM API Key</label>
                   <input
                     type="password"
                     id="api-key-input"
@@ -256,6 +268,35 @@ export default function ChatWidget({ isOpen, onClose, onToggle }) {
                   />
                 </div>
               )}
+
+              {/* Cloud Vector Database Configuration */}
+              <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                <h4>Cloud Vector DB (Upstash)</h4>
+                <p className="settings-sub">
+                  Optionally connect your Upstash Vector Index to query remote cloud embeddings (or leave empty to use the in-browser vector engine).
+                </p>
+                <div className="form-group">
+                  <label htmlFor="upstash-url-input">Upstash Vector REST URL</label>
+                  <input
+                    type="text"
+                    id="upstash-url-input"
+                    placeholder="https://...upstash.io"
+                    value={upstashUrl}
+                    onChange={(e) => setUpstashUrl(e.target.value)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="upstash-token-input">Upstash Vector REST Token</label>
+                  <input
+                    type="password"
+                    id="upstash-token-input"
+                    placeholder="AB...=="
+                    value={upstashToken}
+                    onChange={(e) => setUpstashToken(e.target.value)}
+                  />
+                </div>
+              </div>
+
               <button id="save-settings-btn" className="btn btn-primary btn-sm" onClick={handleSaveSettings}>
                 Save Preferences
               </button>
